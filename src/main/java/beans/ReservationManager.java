@@ -14,9 +14,9 @@ package beans;
 import java.io.Serializable;
 
 import javax.faces.application.FacesMessage;
+import javax.faces.context.ExternalContext;
 import javax.faces.context.FacesContext;
 import javax.servlet.http.HttpSession;
-
 
 import model.DataManager;
 
@@ -125,6 +125,33 @@ public class ReservationManager implements Serializable {
 		
 		DataManager dm = new DataManager();
 		String redirectLocation = dm.saveReservation(userBean, reservationBean);
+		
+		
+		// Reset the reservation bean on successful reservation storage
+		if (redirectLocation.equals("reservation-summary")) {
+			
+			// copy to temporary object
+			Reservation tmpResBean = new Reservation();
+			
+			// Copy settings to the temporary bean object
+			tmpResBean.setRes_id(reservationBean.getRes_id());
+			tmpResBean.setCheckinDate(reservationBean.getCheckinDate());
+			tmpResBean.setCheckinDate(reservationBean.getCheckoutDate());
+			tmpResBean.setGuestCount(reservationBean.getGuestCount());
+			tmpResBean.setKing1(reservationBean.getKing1());
+			tmpResBean.setQueen1(reservationBean.getQueen1());
+			tmpResBean.setQueen2(reservationBean.getQueen2());
+			tmpResBean.setFull2(reservationBean.getFull2());
+
+			
+			// reset reservation bean
+			reservationBean.resetBean();
+			
+			// set temp bean in request context
+			ExternalContext externalContext = FacesContext.getCurrentInstance().getExternalContext();
+			externalContext.getRequestMap().put("reservationBean", tmpResBean);
+		}
+		
 		
 		// redirect based on result of saving the reservation
 		return redirectLocation;

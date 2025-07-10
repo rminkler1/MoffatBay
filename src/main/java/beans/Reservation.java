@@ -291,6 +291,8 @@ public class Reservation implements Serializable {
 
 	// reset the reservation bean after a reservation has been completed
 	public String resetBean() {
+		checkinDate = new Date();
+		checkoutDate = new Date(new Date().getTime() + 86400000);
 		res_id = 0;
 		guestCount = 1;
 		king1 = 0;
