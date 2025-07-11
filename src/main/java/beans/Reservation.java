@@ -299,6 +299,9 @@ public class Reservation implements Serializable {
 		queen1 = 0;
 		queen2 = 0;
 		full2 = 0;
+		
+		updateRoomAvailability();
+		
 		return "home";
 	}
 	
