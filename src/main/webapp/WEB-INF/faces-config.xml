@@ -8,7 +8,7 @@
 	<managed-bean eager="true">
 		<managed-bean-name>reservationManagerBean</managed-bean-name>
 		<managed-bean-class>beans.ReservationManager</managed-bean-class>
-		<managed-bean-scope>view</managed-bean-scope>
+		<managed-bean-scope>request</managed-bean-scope>
 
 		<managed-property>
 			<property-name>userBean</property-name>
