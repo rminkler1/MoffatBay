@@ -458,7 +458,8 @@ body {
         left: -100%;
         top: 100px;
         flex-direction: column;
-        background-color: rgba(0, 0, 0, 0.95);
+    	background: rgba(0, 0, 0, 0.3);
+	    backdrop-filter: blur(10px);
         width: 100%;
         text-align: center;
         transition: 0.3s;
