@@ -13,16 +13,37 @@
     <title><ui:insert name="title">Reservation Lookup</ui:insert></title>
     <h:outputStylesheet name="styles.css" library="css" />
     <link rel="shortcut icon" type="image/x-icon" href="#{resource['images/favicon.ico']}"/>
-    
     <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:ital,wght@0,100..700;1,100..700&amp;family=Old+Standard+TT:ital,wght@0,400;0,700;1,400&amp;display=swap" rel="stylesheet" />
+
     <style>
+      .lookup-hero {
+        height: 80vh;
+        width: 100%;
+        background-image: url('#{resource['images/beach-reservation.jpg']}');
+        background-size: cover;
+        background-position: center;
+        background-repeat: no-repeat;
+        position: relative;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      }
+
       .lookup-container {
         max-width: 700px;
-        margin: 40px auto;
+        margin: 0 auto;
         padding: 30px;
-        background-color: #ffffff;
-        border-radius: 10px;
-        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+        background-color: rgba(255, 255, 255, 0.85);
+        backdrop-filter: blur(5px);
+        border-radius: 20px;
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+        text-align: center;
+      }
+
+      .lookup-container h2 {
+        font-family: 'Old Standard TT', serif;
+        font-size: 2rem;
+        margin-bottom: 20px;
       }
 
       .reservation-box {
@@ -65,20 +86,27 @@
   </h:head>
 
   <h:body>
+
     <ui:insert name="header">
       <ui:include src="/templates/header.xhtml" />
     </ui:insert>
 
+    <!-- Hero Section with Background Image -->
     <h:form>
-      <div class="lookup-container">
-        <h2 style="font-family: 'Old Standard TT', serif;">Reservation Lookup</h2>
+      <div class="lookup-hero">
+        <div class="lookup-container">
+          <h2>Reservation Search</h2>
 
-        <h:panelGrid columns="3" cellpadding="8" style="margin: 0 auto;">
-          <h:outputLabel for="searchInput" value="Search by Reservation ID or Email:" style="font-family: 'IBM Plex Sans', sans-serif;" />
-          <h:inputText id="searchInput" value="#{reservationLookupBean.searchInput}" style="font-family: 'IBM Plex Sans', sans-serif;" />
-          <h:commandButton value="Search" action="#{reservationLookupBean.search}" style="font-family: 'IBM Plex Sans', sans-serif;" styleClass="solidbutton" />
-        </h:panelGrid>
+          <h:panelGrid columns="3" cellpadding="8" style="margin: 0 auto;">
+            <h:outputLabel for="searchInput" value="Confirmation Number or Email:" style="font-family: 'IBM Plex Sans', sans-serif;" />
+            <h:inputText id="searchInput" value="#{reservationLookupBean.searchInput}" style="font-family: 'IBM Plex Sans', sans-serif;" />
+            <h:commandButton value="Find Reservation" action="#{reservationLookupBean.search}" styleClass="solidbutton" />
+          </h:panelGrid>
+        </div>
+      </div>
 
+      <!-- Search Results Section -->
+      <div style="max-width: 700px; margin: 40px auto;">
         <h:outputText value="No results found."
                       rendered="#{reservationLookupBean.searched and empty reservationLookupBean.reservationResults}"
                       styleClass="status-message" style="color: red;" />
@@ -87,11 +115,18 @@
           <h:panelGroup layout="block" styleClass="reservation-box">
 
             <div style="display: flex; justify-content: space-between; align-items: center;">
-              <h3 style="margin: 0; font-family: 'Old Standard TT', serif;">Reservation ID: #{res.res_id} — #{res.ownerName}</h3>
-              <h:commandLink value="#{reservationLookupBean.toggleLabel(res.res_id)}"
-                             action="#{reservationLookupBean.toggleExpand(res.res_id)}"
-                             immediate="true"
-                             styleClass="toggle-link" />
+              <h3 style="margin: 0; font-family: 'Old Standard TT', serif;">
+                Reservation ID: #{res.res_id} — #{res.ownerName}
+              </h3>
+
+			<h:commandLink value="#{reservationLookupBean.toggleLabel(res.res_id)}"
+               		action="#{reservationLookupBean.toggleExpand(res.res_id)}"
+               		immediate="true"
+               		styleClass="toggle-link"
+               		onmousedown="event.preventDefault();">
+  				<f:ajax execute="@this" render="@form" />
+			</h:commandLink>
+
             </div>
 
             <h:panelGroup rendered="#{reservationLookupBean.expandedMap[res.res_id]}">
@@ -144,3 +179,4 @@
   </h:body>
 </f:view>
 </html>
+
