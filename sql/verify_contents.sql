@@ -5,4 +5,4 @@ SELECT * FROM reservation;
 SELECT * FROM room_inventory;
 SELECT * FROM room_reservation;
 SELECT * FROM newsletter;
-SELECT * FROM contact_form;
+SELECT * FROM contact_messages;
