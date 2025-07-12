@@ -8,6 +8,7 @@
 * Kevin Ramirez 
 */
 
+// Wait for DOM to load
 document.addEventListener('DOMContentLoaded', function() {
 
 
@@ -54,4 +55,4 @@ document.addEventListener('DOMContentLoaded', function() {
 		}
 	}
 
-	});
+});
