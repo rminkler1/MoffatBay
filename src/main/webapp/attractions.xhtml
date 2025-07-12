@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
-  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:f="http://java.sun.com/jsf/core"
@@ -12,7 +11,88 @@
     <title><ui:insert name="title">Attractions</ui:insert></title>
     <h:outputStylesheet name="styles.css" library="css" />
     <link rel="shortcut icon" type="image/x-icon" href="#{resource['images/favicon.ico']}"/>
-    
+
+    <style>
+      .hero-content h1 {
+        font-size: 2.5em;
+        margin-top: 10px;
+      }
+
+      .hero-content h2 {
+        letter-spacing: 2px;
+        font-size: 1rem;
+      }
+
+      .hero-content p {
+        margin: 20px 0;
+        font-size: 1.1rem;
+        line-height: 1.6;
+      }
+
+      .whiteoutlinebutton {
+        padding: 0.75rem 1.5rem;
+        border: 2px solid white;
+        color: white;
+        text-decoration: none;
+        font-family: sans-serif;
+        font-size: 1rem;
+        border-radius: 4px;
+        transition: background 0.3s;
+      }
+
+      .whiteoutlinebutton:hover {
+        background-color: white;
+        color: black;
+      }
+
+      .attraction-row {
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+        align-items: center;
+        padding: 3rem 5vw;
+        gap: 2rem;
+      }
+
+      .attraction-row:nth-child(even) {
+        flex-direction: row-reverse;
+      }
+
+      .attraction-text, .attraction-image {
+        flex: 1;
+        text-align: center;
+      }
+
+      .attraction-image img {
+        width: 100%;
+        height: auto;
+        border-radius: 8px;
+      }
+
+      .attraction-text h2 {
+        font-family: serif;
+        font-size: 2rem;
+      }
+
+      .attraction-text p {
+        font-family: sans-serif;
+        font-size: 1.1rem;
+        max-width: 90%;
+        margin: 0 auto;
+      }
+
+      @media (max-width: 768px) {
+        .hero-content {
+          max-width: 90% !important;
+          margin-left: 0 !important;
+          text-align: center;
+        }
+
+        .attraction-row {
+          flex-direction: column !important;
+        }
+      }
+    </style>
   </h:head>
 
   <h:body>
@@ -27,29 +107,72 @@
       <div style="
         height: 80vh;
         width: 100%;
-        background-image: url('#{resource['images/about-us-4.jpg']}');
+        background-image: url('#{resource['images/attractions-1.jpg']}');
         background-size: cover;
         background-position: center;
         background-repeat: no-repeat;
         position: relative;
         display: flex;
         align-items: center;
-        justify-content: center;
-        text-align: center;
-        color: white;
       ">
+        <!-- Overlay -->
         <div style="
-          background-color: rgba(0, 0, 0, 0.4);
-          width: 100%;
-          height: 100%;
           position: absolute;
           top: 0;
           left: 0;
+          width: 100%;
+          height: 100%;
+          background-color: rgba(0, 0, 0, 0.4);
+          z-index: 1;
         "></div>
 
-        <div style="position: relative; z-index: 1;">
-          <h1 class="title serif">Attractions</h1>
-          <p class="subtext sans">Coming soon...</p>
+        <!-- Content -->
+        <div class="hero-content" style="
+          position: relative;
+          z-index: 2;
+          color: white;
+          text-align: left;
+          max-width: 700px;
+          padding: 20px;
+          margin-left: 80px;
+        ">
+          <h2 class="subtext2 sans">NEARBY ADVENTURES</h2>
+          <h1 class="title serif">Explore And Experience</h1>
+          <p class="subtext2 sans">
+            Make the most of your stay at Moffat Bay Lodge by exploring the beauty and excitement of Joviedsa Island. From scenic hiking trails and wildlife watching to relaxing beaches and local shops, there’s something for everyone just minutes from the lodge.
+          </p>
+          <h:link outcome="attractions" styleClass="whiteoutlinebutton">Explore</h:link>
+        </div>
+      </div>
+
+      <!-- Attractions -->
+      <div class="attraction-row">
+        <div class="attraction-text">
+          <h2>Deception Pass State Park</h2>
+          <p>An architectural marvel rising 180 feet above the water, it connects Whidbey and Fidalgo Islands.</p>
+        </div>
+        <div class="attraction-image">
+          <img src="#{resource['images/deception-pass.jpg']}" alt="Deception Pass Bridge"/>
+        </div>
+      </div>
+
+      <div class="attraction-row">
+        <div class="attraction-text">
+          <h2>Olympic National Park</h2>
+          <p>Known for its diverse ecosystems, including beaches, mountains, and rainforests.</p>
+        </div>
+        <div class="attraction-image">
+          <img src="#{resource['images/Olympic-park.jpg']}" alt="Olympic National Park"/>
+        </div>
+      </div>
+
+      <div class="attraction-row">
+        <div class="attraction-text">
+          <h2>Mount Rainier National Park</h2>
+          <p>A stunning active volcano with hiking trails and scenic viewpoints.</p>
+        </div>
+        <div class="attraction-image">
+          <img src="#{resource['images/mount-rainier.jpg']}" alt="Mount Rainier"/>
         </div>
       </div>
 
@@ -66,3 +189,8 @@
     </f:view>
   </h:body>
 </html>
+
+
+
+
+
