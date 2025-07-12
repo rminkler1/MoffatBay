@@ -92,6 +92,8 @@ body {
 #email-entry-wrapper {
 	position: relative;
 	display: inline-block;
+	width: 40%;
+	min-width: 350px;
 }
 
 #email-entry-wrapper input[type=text] {
@@ -100,7 +102,7 @@ body {
 	border: 1px solid #777777;
 	border-right: none;
 	border-radius: 25px;
-	width: 480px;
+	width: 90%;
 	height: 20px;
 	padding: 8px;
 	padding-left: 25px;
