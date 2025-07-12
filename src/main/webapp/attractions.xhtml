@@ -176,6 +176,13 @@
         </div>
       </div>
 
+      <!-- Reservation Section -->
+		<h:form id="reservation-form">
+			<ui:insert name="reservation-panel">
+				<ui:include src="/templates/reservation-panel.xhtml" />
+			</ui:insert>
+		</h:form>
+		
       <!-- Newsletter -->
       <ui:insert name="newsletter">
         <ui:include src="/templates/newsletter.xhtml" />
