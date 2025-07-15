@@ -1,4 +1,4 @@
-<img width="316" height="38" alt="image" src="https://github.com/user-attachments/assets/d0caf546-c804-4466-83f8-f366a8f5e4bc" /># Moffat Bay Lodge – SQL Database Setup
+# Moffat Bay Lodge – SQL Database Setup
 
 This project sets up a relational database for Moffat Bay Lodge — a high-end lodge and marina. It includes user management, reservations, rooms, and contact forms.
 
