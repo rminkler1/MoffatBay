@@ -136,7 +136,7 @@ public class ReservationManager implements Serializable {
 			// Copy settings to the temporary bean object
 			tmpResBean.setRes_id(reservationBean.getRes_id());
 			tmpResBean.setCheckinDate(reservationBean.getCheckinDate());
-			tmpResBean.setCheckinDate(reservationBean.getCheckoutDate());
+			tmpResBean.setCheckoutDate(reservationBean.getCheckoutDate());
 			tmpResBean.setGuestCount(reservationBean.getGuestCount());
 			tmpResBean.setKing1(reservationBean.getKing1());
 			tmpResBean.setQueen1(reservationBean.getQueen1());
