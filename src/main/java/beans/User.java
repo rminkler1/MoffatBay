@@ -85,4 +85,21 @@ public class User implements Serializable{
 		this.initial = initial;
 	}
 	
+	public String getUidDisplay() {
+	    return (uid == -1) ? "N/A" : String.valueOf(uid);
+	}
+
+	
+
+    public String deleteAccount() {
+        this.uid = -1;
+        this.name = null;
+        this.email = null;
+        this.phone = null;
+        this.comments = null;
+        this.googleId = null;
+
+        return "accountDeleted?faces-redirect=true";
+    }
+	
 }
