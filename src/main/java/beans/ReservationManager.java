@@ -184,5 +184,14 @@ public class ReservationManager implements Serializable {
     	
     	return null;
     }
+    
+    public String cancelReservation(int resID) {
+    	
+		DataManager dm = new DataManager();
+
+    	dm.cancelReservation(resID);
+    	
+    	return "reservation-lookup?faces-redirect=false";
+    }
 
 }

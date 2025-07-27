@@ -266,6 +266,7 @@ public class ReservationPeer {
 			String sql = """
 					    SELECT
 					        r.res_id,
+					        r.uid,
 					        r.checkin,
 					        r.checkout,
 					        r.guest_count,
@@ -295,6 +296,7 @@ public class ReservationPeer {
 				r.setQueen1(rs.getInt("queen1"));
 				r.setQueen2(rs.getInt("queen2"));
 				r.setFull2(rs.getInt("full2"));
+				r.setUid(rs.getInt("uid"));
 				list.add(r);
 			}
 		} catch (Exception e) {
@@ -309,6 +311,7 @@ public class ReservationPeer {
 			String sql = """
 					    SELECT
 					        r.res_id,
+					        r.uid,
 					        r.checkin,
 					        r.checkout,
 					        r.guest_count,
@@ -338,12 +341,43 @@ public class ReservationPeer {
 				r.setQueen1(rs.getInt("queen1"));
 				r.setQueen2(rs.getInt("queen2"));
 				r.setFull2(rs.getInt("full2"));
+				r.setUid(rs.getInt("uid"));
 				list.add(r);
 			}
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
 		return list;
+	}
+	
+	public static boolean cancelReservation(int resID) {
+		
+		String sql1 = "DELETE FROM `room_reservation` WHERE (`res_id` = ?);";
+		String sql2 = "DELETE FROM `reservation` WHERE (`res_id` = ?);";
+		
+		try (Connection conn = DataManager.getConnection()) {
+			
+		    conn.setAutoCommit(false);
+			
+			// Remove reservation from room_reservation table
+			PreparedStatement stmt = conn.prepareStatement(sql1);
+			stmt.setInt(1, resID);
+			stmt.executeUpdate();
+			
+			// Remove reservation from reservation table
+			stmt = conn.prepareStatement(sql2);
+			stmt.setInt(1, resID);
+			stmt.executeUpdate();
+			
+			
+			conn.commit();
+		}
+		catch (SQLException e) {
+			e.printStackTrace();
+			return false;
+		}
+		
+		return true;
 	}
 	
 }
