@@ -172,8 +172,15 @@
                     </ui:fragment>
                   </ul>
                 </h:panelGroup>
-              </h:panelGrid>
-            </h:panelGroup>
+				
+			</h:panelGrid>
+
+				<ui:fragment rendered="#{res.uid == userBean.uid}">
+						<h:commandButton value="Cancel Reservation" styleClass="solidbutton" action="#{reservationManagerBean.cancelReservation(res.res_id)}" 
+						 	onclick="return confirm('Are you sure you want to delete this reservation? This action is final!');" />
+				</ui:fragment>
+	
+			</h:panelGroup>
 
           </h:panelGroup>
         </ui:repeat>
@@ -190,4 +197,5 @@
   </h:body>
 </f:view>
 </html>
+
 

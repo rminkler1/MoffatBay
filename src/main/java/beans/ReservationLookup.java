@@ -93,4 +93,5 @@ public class ReservationLookup implements Serializable {
     public void setExpandedMap(Map<Integer, Boolean> expandedMap) {
         this.expandedMap = expandedMap;
     }
+    
 }

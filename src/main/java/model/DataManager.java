@@ -111,5 +111,9 @@ public class DataManager {
 	public List<ResHelper> findReservationsByEmail(String email) {
 		return ReservationPeer.findReservationsByEmail(email);
 	}
+	
+	public boolean cancelReservation(int resID) {
+		return ReservationPeer.cancelReservation(resID);
+	}
 
 }

@@ -28,6 +28,7 @@ public class ResHelper implements Serializable {
 	private int full2 = 0;
 	private String comment;
 	private String ownerName;
+	private int uid = 0;
 
 	public int getRes_id() {
 		return res_id;
@@ -107,5 +108,13 @@ public class ResHelper implements Serializable {
 
 	public void setOwnerName(String ownerName) {
 		this.ownerName = ownerName;
+	}
+
+	public int getUid() {
+		return uid;
+	}
+
+	public void setUid(int uid) {
+		this.uid = uid;
 	}
 }
